@@ -3,9 +3,17 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Debs;
+use App\Models\Budget;
+use App\Models\MyWish;
+use App\Models\Saving;
+use App\Models\Wallet;
+use App\Models\Category;
+use App\Models\Transaction;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -44,5 +52,39 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    ///////////////////////////////////////////////
+    public function wallets(): HasMany
+    {
+        return $this->hasMany(Wallet::class);
+    }
+
+    public function budgets(): HasMany
+    {
+        return $this->hasMany(Budget::class);
+    }
+
+    public function categories(): HasMany
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    public function savings(): HasMany
+    {
+        return $this->hasMany(Saving::class);
+    }
+
+    public function debs(): HasMany
+    {
+        return $this->hasMany(Debs::class);
+    }
+
+    public function my_wish(): HasMany
+    {
+        return $this->hasMany(MyWish::class);
+    }
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
     }
 }
