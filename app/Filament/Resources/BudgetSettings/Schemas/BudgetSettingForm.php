@@ -21,11 +21,11 @@ class BudgetSettingForm
                     ->required(),
 
                 MoneyInput::make('amount')
-                    ->label('Amount')
+                    ->label('Jumlah Budget')
                     ->required(),
 
             Flatpickr::make('date_range')
-                ->label('Date Range')
+                ->label('Periode')
                 ->required()
                 ->rangePicker()
                 ->dehydrated(false) // penting: jangan simpan date_range ke kolom DB

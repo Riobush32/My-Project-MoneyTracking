@@ -21,7 +21,7 @@ return new class extends Migration
                 table: 'wallets',
                 indexName: 'wallet_saving_index'
             )->nullOnDelete();
-            $table->double('amount');
+            $table->double('amount')->nullable();
             $table->enum('type', ['money', 'gold'])->default('money');
             $table->text('description')->nullable();
             $table->timestamps();

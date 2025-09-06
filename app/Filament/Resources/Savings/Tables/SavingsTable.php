@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Wallets\Tables;
+namespace App\Filament\Resources\Savings\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -8,28 +8,29 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class WalletsTable
+class SavingsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('name')
-                    ->label('Nama Wallet')
-                    ->sortable()
+                TextColumn::make('user.name')
+                    ->searchable(),
+                TextColumn::make('wallet.name')
+                    ->label('Disimpan di Wallet')
                     ->searchable(),
                 TextColumn::make('amount')
-                    ->label('Jumlah Uang')
-                    ->numeric()
-                    ->prefix('Rp '),
+                    ->label('Jumlah Tabungan')
+                    ->formatStateUsing(function ($state, $record) {
+                        if ($record->type === 'money') {
+                            return 'Rp ' . number_format($state, 0, ',', '.');
+                        } elseif ($record->type === 'gold') {
+                            return $state . ' gr';
+                        }
+                        return $state;
+                    }),
                 TextColumn::make('type')
-                    ->label('Tipe'),
-                TextColumn::make('adminfee')
-                    ->label('Biaya Admin')
-                    ->numeric()
-                    ->prefix('Rp ')
-                    ->sortable(),
-                TextColumn::make('status'),
+                    ->label('Jenis Tabungan'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
