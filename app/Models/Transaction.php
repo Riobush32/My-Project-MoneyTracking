@@ -28,9 +28,19 @@ class Transaction extends Model
         return $this->belongsTo(BudgetSetting::class);
     }
 
+    public function to_wallet(): BelongsTo
+    {
+        return $this->belongsTo(Wallet::class, 'to_wallet_id');
+    }
+
     public function wallet(): BelongsTo
     {
         return $this->belongsTo(Wallet::class);
+    }
+
+    public function from_wallet(): BelongsTo
+    {
+        return $this->belongsTo(Wallet::class, 'from_wallet_id');
     }
 
     public function my_wish(): BelongsTo
@@ -46,5 +56,10 @@ class Transaction extends Model
     public function debs(): BelongsTo
     {
         return $this->belongsTo(Debs::class);
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
     }
 }

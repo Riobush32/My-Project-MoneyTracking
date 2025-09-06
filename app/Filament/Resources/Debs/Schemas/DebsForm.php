@@ -31,8 +31,8 @@ class DebsForm
                     ->label('Jumlah')
                     ->required(),
                 Select::make('type')
-                    ->options(['debt' => 'Debt', 'receivable' => 'Receivable'])
-                    ->default('debt')
+                    ->options(['debs' => 'Debs', 'receivable' => 'Receivable'])
+                    ->default('debs')
                     ->required(),
                 Flatpickr::make('start_date'),
                 Flatpickr::make('due_date'),

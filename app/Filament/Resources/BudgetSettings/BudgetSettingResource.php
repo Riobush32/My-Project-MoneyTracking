@@ -2,17 +2,18 @@
 
 namespace App\Filament\Resources\BudgetSettings;
 
-use App\Filament\Resources\BudgetSettings\Pages\CreateBudgetSetting;
+use BackedEnum;
+use Filament\Tables\Table;
+use Filament\Schemas\Schema;
+use App\Models\BudgetSetting;
+use App\Enums\NavigationGroup;
+use Filament\Resources\Resource;
+use Filament\Support\Icons\Heroicon;
 use App\Filament\Resources\BudgetSettings\Pages\EditBudgetSetting;
 use App\Filament\Resources\BudgetSettings\Pages\ListBudgetSettings;
+use App\Filament\Resources\BudgetSettings\Pages\CreateBudgetSetting;
 use App\Filament\Resources\BudgetSettings\Schemas\BudgetSettingForm;
 use App\Filament\Resources\BudgetSettings\Tables\BudgetSettingsTable;
-use App\Models\BudgetSetting;
-use BackedEnum;
-use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Table;
 
 class BudgetSettingResource extends Resource
 {
@@ -21,6 +22,8 @@ class BudgetSettingResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'Budget Setting';
+    protected static string | \UnitEnum | null $navigationGroup = NavigationGroup::Settings;
+
 
     public static function form(Schema $schema): Schema
     {

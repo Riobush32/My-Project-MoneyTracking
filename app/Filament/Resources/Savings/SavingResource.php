@@ -2,23 +2,25 @@
 
 namespace App\Filament\Resources\Savings;
 
-use App\Filament\Resources\Savings\Pages\CreateSaving;
+use BackedEnum;
+use App\Models\Saving;
+use Filament\Tables\Table;
+use Filament\Schemas\Schema;
+use App\Enums\NavigationGroup;
+use Filament\Resources\Resource;
+use Filament\Support\Icons\Heroicon;
 use App\Filament\Resources\Savings\Pages\EditSaving;
 use App\Filament\Resources\Savings\Pages\ListSavings;
+use App\Filament\Resources\Savings\Pages\CreateSaving;
 use App\Filament\Resources\Savings\Schemas\SavingForm;
 use App\Filament\Resources\Savings\Tables\SavingsTable;
-use App\Models\Saving;
-use BackedEnum;
-use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Table;
 
 class SavingResource extends Resource
 {
     protected static ?string $model = Saving::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string | \UnitEnum | null $navigationGroup = NavigationGroup::SavingsManagement;
 
     protected static ?string $recordTitleAttribute = 'Saving';
 

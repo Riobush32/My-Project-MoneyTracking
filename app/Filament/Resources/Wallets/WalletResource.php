@@ -2,17 +2,18 @@
 
 namespace App\Filament\Resources\Wallets;
 
-use App\Filament\Resources\Wallets\Pages\CreateWallet;
+use BackedEnum;
+use App\Models\Wallet;
+use Filament\Tables\Table;
+use Filament\Schemas\Schema;
+use App\Enums\NavigationGroup;
+use Filament\Resources\Resource;
+use Filament\Support\Icons\Heroicon;
 use App\Filament\Resources\Wallets\Pages\EditWallet;
 use App\Filament\Resources\Wallets\Pages\ListWallets;
+use App\Filament\Resources\Wallets\Pages\CreateWallet;
 use App\Filament\Resources\Wallets\Schemas\WalletForm;
 use App\Filament\Resources\Wallets\Tables\WalletsTable;
-use App\Models\Wallet;
-use BackedEnum;
-use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Table;
 
 class WalletResource extends Resource
 {
@@ -21,6 +22,8 @@ class WalletResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'Wallets';
+    protected static string | \UnitEnum | null $navigationGroup = NavigationGroup::Settings;
+
 
     public static function form(Schema $schema): Schema
     {

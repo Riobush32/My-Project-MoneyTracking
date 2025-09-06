@@ -23,7 +23,7 @@ return new class extends Migration
             )->onDelete('cascade');
             $table->string('partner_name');
             $table->double('amount');
-            $table->enum('type', ['debt', 'receivable'])->default('debt');
+            $table->enum('type', ['debs', 'receivable'])->default('debs');
             $table->date('start_date')->nullable();
             $table->date('due_date')->nullable();
             $table->enum('status', ['pending', 'paid', 'overdue'])->default('pending');

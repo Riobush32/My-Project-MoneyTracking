@@ -2,17 +2,18 @@
 
 namespace App\Filament\Resources\MyWishes;
 
-use App\Filament\Resources\MyWishes\Pages\CreateMyWish;
+use BackedEnum;
+use App\Models\MyWish;
+use Filament\Tables\Table;
+use Filament\Schemas\Schema;
+use App\Enums\NavigationGroup;
+use Filament\Resources\Resource;
+use Filament\Support\Icons\Heroicon;
 use App\Filament\Resources\MyWishes\Pages\EditMyWish;
+use App\Filament\Resources\MyWishes\Pages\CreateMyWish;
 use App\Filament\Resources\MyWishes\Pages\ListMyWishes;
 use App\Filament\Resources\MyWishes\Schemas\MyWishForm;
 use App\Filament\Resources\MyWishes\Tables\MyWishesTable;
-use App\Models\MyWish;
-use BackedEnum;
-use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Table;
 
 class MyWishResource extends Resource
 {
@@ -21,6 +22,9 @@ class MyWishResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'My Wishes';
+
+    protected static string | \UnitEnum | null $navigationGroup = NavigationGroup::SavingsManagement;
+
 
     public static function form(Schema $schema): Schema
     {

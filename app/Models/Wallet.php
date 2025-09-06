@@ -42,12 +42,12 @@ class Wallet extends Model
         return $this->hasMany(Debs::class);
     }
 
-    public function my_wish(): HasMany
+    public function my_wishes(): HasMany
     {
         return $this->hasMany(MyWish::class);
     }
 
-    public function transaction(): HasMany
+    public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
     }
