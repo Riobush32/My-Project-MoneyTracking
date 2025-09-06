@@ -17,10 +17,10 @@ return new class extends Migration
                 table: 'users',
                 indexName: 'user_saving_index'
             )->onDelete('cascade');
-            $table->foreignId('wallet_id')->constrained(
+            $table->foreignId('wallet_id')->nullable()->constrained(
                 table: 'wallets',
                 indexName: 'wallet_saving_index'
-            )->onDelete('cascade');
+            )->nullOnDelete();
             $table->double('amount');
             $table->enum('type', ['money', 'gold'])->default('money');
             $table->text('description')->nullable();

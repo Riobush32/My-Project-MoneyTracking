@@ -18,8 +18,7 @@ return new class extends Migration
                 indexName: 'user_wallet_index',
             )->onDelete('cascade');
             $table->string('name'); //nama tempat menyimpan uang
-            $table->double('currency')->default('0.00');
-            $table->double('belance')->default('0.00');
+            $table->double('amount')->default('0.00');
             $table->enum('type', ['cash', 'e-wallet', 'bank'])->default('cash');
             $table->text('desciption')->nullable();
             $table->double('adminfee')->nullable();

@@ -13,14 +13,18 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['income', 'expense', 'savings', 'my wish', 'deps', 'receivable'])->default('expense');
+            $table->enum('type', ['income', 'expense', 'savings', 'my wish', 'deps', 'receivable', 'alocation']);
             $table->foreignId('user_id')->constrained(
                 table: 'users',
                 indexName: 'user_transaction_index',
             )->onDelete('cascade');
-            $table->foreignId('wallet_id')->nullable()->constrained(
+            $table->foreignId('from_wallet_id')->nullable()->constrained(
                 table: 'wallets',
-                indexName: 'wallet_transaction_index',
+                indexName: 'from_wallet_transaction_index',
+            )->nullOnDelete();
+            $table->foreignId('to_wallet_id')->nullable()->constrained(
+                table: 'wallets',
+                indexName: 'to_wallet_transaction_index',
             )->nullOnDelete();
             $table->foreignId('budget_setting_id')->nullable()->constrained(
                 table: 'budget_settings',
@@ -38,7 +42,7 @@ return new class extends Migration
                 table: 'debs',
                 indexName: 'debs_transaction_index',
             )->nullOnDelete();
-            $table->foreignId('category_id')->constrained(
+            $table->foreignId('category_id')->nullable()->constrained(
                 table: 'categories',
                 indexName: 'category_transaction_index',
             )->nullOnDelete();
