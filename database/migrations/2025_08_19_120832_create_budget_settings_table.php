@@ -18,8 +18,8 @@ return new class extends Migration
                 indexName: 'budget_setting_index',
             )->onDelete('cascade');
             $table->double('amount');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
         });
